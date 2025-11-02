@@ -1,0 +1,3 @@
+[submodule "suiteapp"]
+	path = suiteapp
+	url = https://github.com/ddalpra/suiteapp.git
