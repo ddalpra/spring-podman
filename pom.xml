@@ -19,7 +19,7 @@
         <keycloak.version>26.0.7</keycloak.version>
     </properties>
     <modules>
-        <module>erpapp</module>
+        <module>suiteapp</module>
     </modules>
     <dependencyManagement>
         <dependencies>

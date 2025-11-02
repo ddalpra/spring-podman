@@ -11,7 +11,6 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     networks:
       - postgres-db-network
-
   keycloak:
     image: quay.io/keycloak/keycloak:26.4.2
     command: start-dev
@@ -35,8 +34,7 @@ services:
       - keycloak-db
     networks:
       - postgres-db-network
-
-    dck-db01:
+  dck-db01:
         image: docker.io/library/postgres:16
         environment:
             - POSTGRES_USER=postgres
@@ -47,13 +45,13 @@ services:
             - 5433:5432
         networks:
             - postgres-db-network
-    erpapp:
+  suiteapp:
         build:
-            context: ./erpapp
+            context: ./suiteapp
             dockerfile: src/docker/Dockerfile
         ports:
             - "8080:8080"
-        container_name: erpapp
+        container_name: suiteapp
         networks:
             - postgres-db-network
         depends_on:
