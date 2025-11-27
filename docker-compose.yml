@@ -35,7 +35,7 @@ services:
       - keycloak-db
     networks:
       - postgres-db-network
-  dck-db01:
+  pdm-db01:
         image: docker.io/library/postgres:16
         environment:
             - POSTGRES_USER=postgres
@@ -47,6 +47,18 @@ services:
             - 5433:5432
         networks:
             - postgres-db-network
+  pdm-db02:
+        image: docker.io/library/postgres:16
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=password
+        volumes:
+            - postgres-db02-volume:/var/lib/postgresql/data
+        restart: always
+        ports:
+            - 5434:5432
+        networks:
+            - postgres-db-network          
   suiteapp:
         build:
             context: ./suiteapp
@@ -71,6 +83,12 @@ volumes:
             type: none
             o: bind
             device: /home/ddalpra/Sviluppo/spring-podman/data01
+    postgres-db02-volume:
+        driver: local
+        driver_opts:
+            type: none
+            o: bind
+            device: /home/ddalpra/Sviluppo/spring-podman/data02
     keyclok-db01-volume:
         driver: local
         driver_opts:
